@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C++学习记录算法篇-堆排序 | 星辰微光的博客</title><meta name="author" content="星辰微光"><meta name="copyright" content="星辰微光"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="C++学习记录算法篇-堆排序 一、堆  堆是一颗完全二叉树 如果堆的每一个节点（叶子节点除外）都大于他的子节点，这样的堆称为大根堆 如果堆的每一个节点（叶子节点除外）都小于他的子节点，这样的堆称为小根堆 对于用数组储存的堆，有以下运算性质：  某个节点i的父节点下标为：（i-1）&#x2F;2 （整数除法） 某个节点i的左孩子节点下标为： i*2+1 某个节点i的右孩子节点下标为： i*2+2    二、堆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++学习记录算法篇-堆排序">
+<meta property="og:url" content="http://example.com/2022/05/02/C++%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E7%AE%97%E6%B3%95%E7%AF%87-%E5%A0%86%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="星辰微光的博客">
+<meta property="og:description" content="C++学习记录算法篇-堆排序 一、堆  堆是一颗完全二叉树 如果堆的每一个节点（叶子节点除外）都大于他的子节点，这样的堆称为大根堆 如果堆的每一个节点（叶子节点除外）都小于他的子节点，这样的堆称为小根堆 对于用数组储存的堆，有以下运算性质：  某个节点i的父节点下标为：（i-1）&#x2F;2 （整数除法） 某个节点i的左孩子节点下标为： i*2+1 某个节点i的右孩子节点下标为： i*2+2    二、堆">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top4.jpg">
+<meta property="article:published_time" content="2022-05-02T11:14:31.000Z">
+<meta property="article:modified_time" content="2025-07-13T11:29:19.271Z">
+<meta property="article:author" content="星辰微光">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/05/02/C++%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E7%AE%97%E6%B3%95%E7%AF%87-%E5%A0%86%E6%8E%92%E5%BA%8F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++学习记录算法篇-堆排序',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Favatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">251</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 寻遍深水</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Unity%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Unity开发记录</span></a></li><li><a class="site-page child" href="/categories/Unity%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Unity学习记录</span></a></li><li><a class="site-page child" href="/categories/%E6%B8%B8%E6%88%8F%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><i class="fa-fw fas fa-archive"></i><span> 游戏算法学习</span></a></li><li><a class="site-page child" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E6%9D%82%E9%A1%B9%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> 游戏开发杂项记录</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 探遍迷雾</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Cpp%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Cpp学习记录</span></a></li><li><a class="site-page child" href="/categories/Java%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Java学习记录</span></a></li><li><a class="site-page child" href="/categories/Csharp%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Csharp学习记录</span></a></li><li><a class="site-page child" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"><i class="fa-fw fas fa-archive"></i><span> 数据结构与算法</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 筛遍河砂</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%85%B6%E4%BB%96%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> 其他开发记录</span></a></li><li><a class="site-page child" href="/categories/Git%E5%AD%A6%E4%B9%A0/"><i class="fa-fw fas fa-archive"></i><span> Git学习</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 记忆奔腾</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Linux/"><i class="fa-fw fas fa-archive"></i><span> Linux</span></a></li><li><a class="site-page child" href="/categories/JavaWeb/"><i class="fa-fw fas fa-archive"></i><span> JavaWeb</span></a></li><li><a class="site-page child" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="fa-fw fas fa-archive"></i><span> 操作系统</span></a></li><li><a class="site-page child" href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/"><i class="fa-fw fas fa-archive"></i><span> 汇编语言</span></a></li><li><a class="site-page child" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/"><i class="fa-fw fas fa-archive"></i><span> 数据结构复习</span></a></li><li><a class="site-page child" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"><i class="fa-fw fas fa-archive"></i><span> 软件体系结构</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 行路杂谈</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%A1%8C%E8%B7%AF%E6%9D%82%E8%B0%88/"><i class="fa-fw fas fa-archive"></i><span> 行路杂谈</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top4.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">星辰微光的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">C++学习记录算法篇-堆排序</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 寻遍深水</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Unity%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Unity开发记录</span></a></li><li><a class="site-page child" href="/categories/Unity%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Unity学习记录</span></a></li><li><a class="site-page child" href="/categories/%E6%B8%B8%E6%88%8F%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><i class="fa-fw fas fa-archive"></i><span> 游戏算法学习</span></a></li><li><a class="site-page child" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E6%9D%82%E9%A1%B9%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> 游戏开发杂项记录</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 探遍迷雾</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Cpp%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Cpp学习记录</span></a></li><li><a class="site-page child" href="/categories/Java%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Java学习记录</span></a></li><li><a class="site-page child" href="/categories/Csharp%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Csharp学习记录</span></a></li><li><a class="site-page child" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"><i class="fa-fw fas fa-archive"></i><span> 数据结构与算法</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 筛遍河砂</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%85%B6%E4%BB%96%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> 其他开发记录</span></a></li><li><a class="site-page child" href="/categories/Git%E5%AD%A6%E4%B9%A0/"><i class="fa-fw fas fa-archive"></i><span> Git学习</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 记忆奔腾</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Linux/"><i class="fa-fw fas fa-archive"></i><span> Linux</span></a></li><li><a class="site-page child" href="/categories/JavaWeb/"><i class="fa-fw fas fa-archive"></i><span> JavaWeb</span></a></li><li><a class="site-page child" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="fa-fw fas fa-archive"></i><span> 操作系统</span></a></li><li><a class="site-page child" href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/"><i class="fa-fw fas fa-archive"></i><span> 汇编语言</span></a></li><li><a class="site-page child" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/"><i class="fa-fw fas fa-archive"></i><span> 数据结构复习</span></a></li><li><a class="site-page child" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"><i class="fa-fw fas fa-archive"></i><span> 软件体系结构</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 行路杂谈</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%A1%8C%E8%B7%AF%E6%9D%82%E8%B0%88/"><i class="fa-fw fas fa-archive"></i><span> 行路杂谈</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">C++学习记录算法篇-堆排序</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-02T11:14:31.000Z" title="发表于 2022-05-02 19:14:31">2022-05-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-13T11:29:19.271Z" title="更新于 2025-07-13 19:29:19">2025-07-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><strong>C++学习记录算法篇-堆排序</strong></p>
+<p>一、堆</p>
+<ul>
+<li>堆是一颗<strong>完全二叉树</strong></li>
+<li>如果堆的<strong>每一个节点（叶子节点除外）都大于他的子节点，这样的堆称为大根堆</strong></li>
+<li>如果堆的<strong>每一个节点（叶子节点除外）都小于他的子节点，这样的堆称为小根堆</strong></li>
+<li>对于用数组储存的堆，有以下运算性质：
+<ol>
+<li>某个节点i的父节点下标为：（i-1）/2 （整数除法）</li>
+<li>某个节点i的左孩子节点下标为： i*2+1</li>
+<li>某个节点i的右孩子节点下标为： i*2+2</li>
+</ol>
+</li>
+</ul>
+<p>二、堆排序（以从小到大为例）</p>
+<p>利用堆的性质进行排序：<strong>从小到大使用大根堆，从大到小使用小根堆</strong></p>
+<p>大根堆的根节点的值最大，因此<strong>不断地把根节点放到数组的最末端，放完再维护堆，就可以实现从小到大排序</strong></p>
+<p>三、代码实现：</p>
+<ol>
+<li>
+<p>首先实现堆的维护：</p>
+<p>对于某个待维护的下标，我们<strong>要维护其子节点，子节点的子节点…直到叶子节点</strong>，这是一个递归的过程</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//维护堆的性质，以大根堆为例：</span></span><br><span class="line"><span class="comment">//所需要的参数：数组，数组的长度，待维护的下标</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">heapify</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> n, <span class="type">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//定位待维护下标及其左右孩子，先默认最大值即为待维护节点</span></span><br><span class="line">	<span class="type">int</span> largest = i;</span><br><span class="line">	<span class="type">int</span> lson = i * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> rson = i * <span class="number">2</span> + <span class="number">2</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//下面是堆的维护</span></span><br><span class="line">	<span class="keyword">if</span> (lson &lt; n &amp;&amp; arr[largest] &lt; arr[lson])</span><br><span class="line">		largest = lson;</span><br><span class="line">	<span class="keyword">if</span> (rson &lt; n &amp;&amp; arr[largest] &lt; arr[rson])</span><br><span class="line">		largest = rson;</span><br><span class="line">	<span class="keyword">if</span> (largest != i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">swap</span>(arr[i], arr[largest]);</span><br><span class="line">		<span class="built_in">heapify</span>(arr, n, largest);<span class="comment">//递归维护</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>堆排序的入口：</p>
+<ul>
+<li>首先是建立堆，<strong>对于长度为n的数组，从（n-1-1）/2的下标开始往上维护</strong></li>
+<li>建立完堆后，把堆顶和数组的最后一个元素交换。<strong>交换后堆需要再次维护，此时数组的长度-1</strong></li>
+<li>依次类推，直到堆顶只剩下一个元素，最后将此元素排好。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">heap_sort</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//建堆</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = (n - <span class="number">1</span> - <span class="number">1</span>) / <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">heapify</span>(arr, n, i);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//堆排序</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">swap</span>(arr[i], arr[<span class="number">0</span>]);</span><br><span class="line">		<span class="built_in">heapify</span>(arr, i, <span class="number">0</span>);</span><br><span class="line">		<span class="comment">//交换一次后，要再次维护堆使其再次变成大根堆，此时数组的长度-1，即长度为i</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>三、堆排序的时间复杂度为O（nlog2n【以2为底，n的对数】）</p>
+<p>​                       空间复杂度为O（1），因为无需用到额外空间。</p>
+<p>​        <strong>堆排序是不稳定的</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">星辰微光</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/05/02/C++%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E7%AE%97%E6%B3%95%E7%AF%87-%E5%A0%86%E6%8E%92%E5%BA%8F/">http://example.com/2022/05/02/C++%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E7%AE%97%E6%B3%95%E7%AF%87-%E5%A0%86%E6%8E%92%E5%BA%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">星辰微光的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C/">C++</a><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div><div class="post-share"><div class="social-share" data-image="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2022/05/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/" title="数据结构复习"><img class="cover" src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">数据结构复习</div></div><div class="info-2"><div class="info-item-1">数据结构复习 数据结构的基本概念   数据： 信息的载体，是对客观事物的符号表示，图像，声音，视频等也属于数据的范畴   数据元素：  数据的基本单位，也称元素，结点或记录 由若干个数据项构成，数据项是数据不可分割的最小单位    数据对象：  数据的子集 具有相同性质的数据元素的集合    数据结构： 数据元素的集合中，元素相互之间的关系：  逻辑结构：集合，线性结构，树型结构，图状结构 物理结构：顺序，链接，索引，散列    **算法的特性：**可行性，有穷性，确定性，输入，输出   **算法的设计原则：**正确性，可读性，健壮性，高效率，低存储量   队列 队列是一种先进先出的线性表，队头只允许出队，队尾只允许入队。 通常，维护队头的数指向队头所在的下标，维护队尾的数指向队尾的数+1.此时，当队头==队尾的时候队列为空 循环队列 随着出队和入队的进行，数组会整体向右平移，因为数组前面的元素因为出队变成了空白，变得不可使用。造成空间的浪费。使用循环队列可以避免空间的浪费。 一样地，队头==队尾的时候，队列为空。 循环队列里，队头==（队尾+1）%maxsize...</div></div></div></a><a class="pagination-related" href="/2022/05/02/C++%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E7%AE%97%E6%B3%95%E7%AF%87-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" title="C++学习记录算法篇—归并排序"><img class="cover" src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top6.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">C++学习记录算法篇—归并排序</div></div><div class="info-2"><div class="info-item-1">C++学习记录算法篇—归并排序 一、归并排序： 归并排序利用了分治思想，即把大问题先拆分为小问题，对小问题进行求解，最后合并成大问题的解。在归并排序中体现为：先把数组拆分为许多小数组，对小数组进行排序，再把有序的小数组合并成有序的大数组。 二、归并排序的实现：   首先是归并排序的入口，在这个入口创建临时数组，并进行划分，最后在排序完成后删除临时数组 12345678910void merge_sort(int arr[],int n)&#123;	//首先分配辅助数组	int* tempArr = new int[n];	//分配完，进行数组的划分	msort(arr, tempArr, 0, n - 1);	//排序完后，删除临时数组	delete tempArr;	return;&#125;   接下来是数组的划分，传入的参数为：  欲划分的数组 临时数组 划分的起点（最开始是0） 划分的终点（最开始是n-1）  首先一直划分数组，直到每个小数组只有一个元素，这是一个递归的过程 划分数组后，进入合并阶段 123456789101112131415void...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/11/09/C++-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E7%AE%97%E6%B3%95%E7%AF%87-%E5%9F%83%E6%B0%8F%E7%AD%9B%E8%B4%A8%E6%95%B0/" title="C++学习记录算法篇-埃氏筛质数"><img class="cover" src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-09</div><div class="info-item-2">C++学习记录算法篇-埃氏筛质数</div></div><div class="info-2"><div class="info-item-1">C++学习记录算法篇 埃氏筛质数 埃氏筛质数法原理：质数的倍数都不是质数，因此将质数的倍数都筛除，剩下的都是质数。 示例： 假设要筛选从1到a(a&gt;=2)内的所有质数： 1.先设所有数均为质数(利用布尔) 2.将1设为不是质数 3.从2开始，2的倍数均不是质数；再从3开始，3的倍数均不是质数 4.此时遇到4，4在筛除2的倍数时已经被筛除，则跳过4，从5开始，以此类推筛除所有非质数 5.3，4流程重复至根号内a即可 代码示例： 123456789101112131415161718192021//以a=100为例bool is_prime[101];for(int i=1;i&lt;=100;i++)&#123;    is_prime[i]=true;&#125;//先假设所有的数都是质数is_prime[1]=false;//1不是质数//开始筛选for(int i=2;i&lt;=pow(100,0.5);i++)&#123;    if(is_prime[i]==true)    &#123;        for(int j=2;j*i&lt;=100;j++) ...</div></div></div></a><a class="pagination-related" href="/2022/02/27/C++-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E7%AE%97%E6%B3%95%E7%AF%87-%E5%BF%AB%E8%AF%BB%E4%B8%8E%E5%BF%AB%E5%86%99/" title="C++学习记录算法篇-快读与快写"><img class="cover" src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top6.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-27</div><div class="info-item-2">C++学习记录算法篇-快读与快写</div></div><div class="info-2"><div class="info-item-1">C++学习记录算法篇-快读与快写 快读 1234567int read() &#123;    int x=0,f=1;    char c=getchar();    while(c&lt;&#x27;0&#x27;||c&gt;&#x27;9&#x27;)&#123;if(c==&#x27;-&#x27;) f=-1;c=getchar();&#125;    while(c&gt;=&#x27;0&#x27;&amp;&amp;c&lt;=&#x27;9&#x27;) x=x*10+c-&#x27;0&#x27;,c=getchar();    return x*f;&#125; 快写 12345void write(int x) &#123;     if(x&lt;0) putchar(&#x27;-&#x27;),x=-x;     if(x&gt;9) write(x/10);     putchar(x%10+&#x27;0&#x27;);&#125; </div></div></div></a><a class="pagination-related" href="/2022/05/02/C++%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E7%AE%97%E6%B3%95%E7%AF%87-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" title="C++学习记录算法篇—归并排序"><img class="cover" src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top6.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-02</div><div class="info-item-2">C++学习记录算法篇—归并排序</div></div><div class="info-2"><div class="info-item-1">C++学习记录算法篇—归并排序 一、归并排序： 归并排序利用了分治思想，即把大问题先拆分为小问题，对小问题进行求解，最后合并成大问题的解。在归并排序中体现为：先把数组拆分为许多小数组，对小数组进行排序，再把有序的小数组合并成有序的大数组。 二、归并排序的实现：   首先是归并排序的入口，在这个入口创建临时数组，并进行划分，最后在排序完成后删除临时数组 12345678910void merge_sort(int arr[],int n)&#123;	//首先分配辅助数组	int* tempArr = new int[n];	//分配完，进行数组的划分	msort(arr, tempArr, 0, n - 1);	//排序完后，删除临时数组	delete tempArr;	return;&#125;   接下来是数组的划分，传入的参数为：  欲划分的数组 临时数组 划分的起点（最开始是0） 划分的终点（最开始是n-1）  首先一直划分数组，直到每个小数组只有一个元素，这是一个递归的过程 划分数组后，进入合并阶段 123456789101112131415void...</div></div></div></a><a class="pagination-related" href="/2022/05/02/C++%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E7%AE%97%E6%B3%95%E7%AF%87-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" title="C++学习记录算法篇—快速排序"><img class="cover" src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top1.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-02</div><div class="info-item-2">C++学习记录算法篇—快速排序</div></div><div class="info-2"><div class="info-item-1">C++学习记录算法篇—快速排序 一、快速排序的过程（从小到大排为例）： 首先，假设基准数为最左边的数。 然后，让两个“哨兵”从最左边和最右边向中间探测，从左边出发的哨兵找比基准数大的数，从右边出发的哨兵找比基准数小的数 注意，因为是从小到大排，所以右边的哨兵要先出发 两个哨兵都“停下”（即找到了符合要求的数），交换两个“哨兵”的值，接着继续探测，继续交换，直到两个哨兵相遇为止 两个哨兵相遇后，交换基准数与相遇时所指示的数。 此时，基准数左边都小于基准数，基准数右边都大于基准数，这也是为什么要右边哨兵先动的原因 至此，基准数归位，接着对基准数的两边再次进行快速排序，这是一个递归的过程。 可以看到，快速排序就是不断地把基准数归位的过程 下面是代码： 12345678910111213141516171819202122232425262728293031323334353637//快速排序函数void quicksort(int l, int r)//接受最左边数字的下标left，和最右边数字的下标right&#123;	int i, j, t, temp;	if (l &gt;=...</div></div></div></a><a class="pagination-related" href="/2022/01/25/C++-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E7%AE%97%E6%B3%95%E7%AF%87%EF%BC%9A%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A21-n%E7%9A%84%E5%85%A8%E6%8E%92%E5%88%97/" title="C++学习记录算法篇：深度优先搜索1-n的全排列"><img class="cover" src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-25</div><div class="info-item-2">C++学习记录算法篇：深度优先搜索1-n的全排列</div></div><div class="info-2"><div class="info-item-1">C++学习记录算法篇：深度优先搜索1-n的全排列 深度优先搜索的核心思想是**“不撞南墙不回头”，即对每一个路径进行深入直到不能深入为止**，之后再退回上一步，继续尝试新的路径，直到把每一条路径都尝试一遍。 核心代码如下： 1234567891011121314void dfs(int step)&#123;    判断边界//判断边界，step是否已经到最后一步，是的话返回        //尝试每一种可能    for(int i=1;i&lt;=n;i++)    &#123;        //尝试                dfs(step+1);//继续下一步,这是一个递归的过程    &#125;        return;//返回&#125; 案例：求n的全排列： 这里通过将手上标有1~n的牌放到n个箱子里，来模拟全排列的过程，代码如下： 12345678910111213141516171819202122232425262728293031323334353637383940414243#include&lt;iostream&gt;using...</div></div></div></a><a class="pagination-related" href="/2022/06/29/C++-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-STL-list/" title="C++学习记录-STL-list"><img class="cover" src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top6.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-29</div><div class="info-item-2">C++学习记录-STL-list</div></div><div class="info-2"><div class="info-item-1">C++学习记录-STL-list C++中的list是一个双向链表 list常用API   构造函数 1234list&lt;T&gt; 名称;//默认构造方式list(开始位置迭代器,结束位置迭代器);//将区间中的元素拷贝给该容器list(数量，元素);//将n个元素拷贝给该容器list(另一个容器);//拷贝构造函数   插入删除操作 1234.push_back(元素);//尾部加入一个元素.pop_back(元素);//尾部弹出一个元素.push_front(元素);//头部插入一个元素.pop_front(元素);//头部弹出一个元素   判断修改大小操作 123.size();//返回大小.empty();//判断是否为空.resize(num，elem);//重新指定容器长度为num，如果变长，则用默认元素填充，变短则删除多余元素   数据获取 12.front();//获取第一个元素.back();//获取最后一个元素   容器反转 12.reverse();//反转.sort();//默认从大到小排序   </div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Favatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">星辰微光</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">251</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="mailto:18475126236@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/07/13/Hexo%E5%8D%9A%E5%AE%A2Github%E5%A4%87%E4%BB%BD%E8%AE%B0%E5%BD%95/" title="Hexo博客Github备份记录"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo博客Github备份记录"/></a><div class="content"><a class="title" href="/2025/07/13/Hexo%E5%8D%9A%E5%AE%A2Github%E5%A4%87%E4%BB%BD%E8%AE%B0%E5%BD%95/" title="Hexo博客Github备份记录">Hexo博客Github备份记录</a><time datetime="2025-07-13T12:44:46.000Z" title="发表于 2025-07-13 20:44:46">2025-07-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/25/%E7%BF%BB%E8%AF%91-CEDH%E6%8B%89%E5%A1%94%E6%89%8E%E6%AF%94%E6%8C%81%E6%88%92%E4%BA%BACombo/" title="翻译-CEDH拉塔扎比持戒人Combo"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="翻译-CEDH拉塔扎比持戒人Combo"/></a><div class="content"><a class="title" href="/2025/01/25/%E7%BF%BB%E8%AF%91-CEDH%E6%8B%89%E5%A1%94%E6%89%8E%E6%AF%94%E6%8C%81%E6%88%92%E4%BA%BACombo/" title="翻译-CEDH拉塔扎比持戒人Combo">翻译-CEDH拉塔扎比持戒人Combo</a><time datetime="2025-01-25T09:29:56.000Z" title="发表于 2025-01-25 17:29:56">2025-01-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/%E5%A5%BD%E5%A5%87%E6%80%AA%E5%95%8A/" title="复活吧我的博客"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="复活吧我的博客"/></a><div class="content"><a class="title" href="/2024/12/15/%E5%A5%BD%E5%A5%87%E6%80%AA%E5%95%8A/" title="复活吧我的博客">复活吧我的博客</a><time datetime="2024-12-14T16:08:46.000Z" title="发表于 2024-12-15 00:08:46">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/14/Unreal-PCG%E5%88%B7%E8%8D%89%E5%B7%A5%E5%85%B7%E8%AE%B0%E5%BD%95/" title="Unreal-PCG刷草工具记录"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Unreal-PCG刷草工具记录"/></a><div class="content"><a class="title" href="/2024/12/14/Unreal-PCG%E5%88%B7%E8%8D%89%E5%B7%A5%E5%85%B7%E8%AE%B0%E5%BD%95/" title="Unreal-PCG刷草工具记录">Unreal-PCG刷草工具记录</a><time datetime="2024-12-14T13:39:56.000Z" title="发表于 2024-12-14 21:39:56">2024-12-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/04/%E5%BF%AB%E9%80%9F%E5%B9%82/" title="快速幂"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="快速幂"/></a><div class="content"><a class="title" href="/2024/08/04/%E5%BF%AB%E9%80%9F%E5%B9%82/" title="快速幂">快速幂</a><time datetime="2024-08-04T14:24:27.000Z" title="发表于 2024-08-04 22:24:27">2024-08-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 星辰微光</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body></html>

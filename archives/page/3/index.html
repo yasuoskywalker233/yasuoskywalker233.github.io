@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>归档 | 星辰微光的博客</title><meta name="author" content="星辰微光"><meta name="copyright" content="星辰微光"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="归档">
+<meta property="og:url" content="http://example.com/archives/page/3/index.html">
+<meta property="og:site_name" content="星辰微光的博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Favatar.jpg">
+<meta property="article:author" content="星辰微光">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Favatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/archives/page/3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '归档',
+  isPost: false,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Favatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">251</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 寻遍深水</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Unity%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Unity开发记录</span></a></li><li><a class="site-page child" href="/categories/Unity%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Unity学习记录</span></a></li><li><a class="site-page child" href="/categories/%E6%B8%B8%E6%88%8F%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><i class="fa-fw fas fa-archive"></i><span> 游戏算法学习</span></a></li><li><a class="site-page child" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E6%9D%82%E9%A1%B9%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> 游戏开发杂项记录</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 探遍迷雾</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Cpp%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Cpp学习记录</span></a></li><li><a class="site-page child" href="/categories/Java%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Java学习记录</span></a></li><li><a class="site-page child" href="/categories/Csharp%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Csharp学习记录</span></a></li><li><a class="site-page child" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"><i class="fa-fw fas fa-archive"></i><span> 数据结构与算法</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 筛遍河砂</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%85%B6%E4%BB%96%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> 其他开发记录</span></a></li><li><a class="site-page child" href="/categories/Git%E5%AD%A6%E4%B9%A0/"><i class="fa-fw fas fa-archive"></i><span> Git学习</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 记忆奔腾</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Linux/"><i class="fa-fw fas fa-archive"></i><span> Linux</span></a></li><li><a class="site-page child" href="/categories/JavaWeb/"><i class="fa-fw fas fa-archive"></i><span> JavaWeb</span></a></li><li><a class="site-page child" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="fa-fw fas fa-archive"></i><span> 操作系统</span></a></li><li><a class="site-page child" href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/"><i class="fa-fw fas fa-archive"></i><span> 汇编语言</span></a></li><li><a class="site-page child" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/"><i class="fa-fw fas fa-archive"></i><span> 数据结构复习</span></a></li><li><a class="site-page child" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"><i class="fa-fw fas fa-archive"></i><span> 软件体系结构</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 行路杂谈</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%A1%8C%E8%B7%AF%E6%9D%82%E8%B0%88/"><i class="fa-fw fas fa-archive"></i><span> 行路杂谈</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">星辰微光的博客</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 寻遍深水</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Unity%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Unity开发记录</span></a></li><li><a class="site-page child" href="/categories/Unity%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Unity学习记录</span></a></li><li><a class="site-page child" href="/categories/%E6%B8%B8%E6%88%8F%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"><i class="fa-fw fas fa-archive"></i><span> 游戏算法学习</span></a></li><li><a class="site-page child" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E6%9D%82%E9%A1%B9%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> 游戏开发杂项记录</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 探遍迷雾</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Cpp%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Cpp学习记录</span></a></li><li><a class="site-page child" href="/categories/Java%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Java学习记录</span></a></li><li><a class="site-page child" href="/categories/Csharp%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> Csharp学习记录</span></a></li><li><a class="site-page child" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"><i class="fa-fw fas fa-archive"></i><span> 数据结构与算法</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 筛遍河砂</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%85%B6%E4%BB%96%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-archive"></i><span> 其他开发记录</span></a></li><li><a class="site-page child" href="/categories/Git%E5%AD%A6%E4%B9%A0/"><i class="fa-fw fas fa-archive"></i><span> Git学习</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 记忆奔腾</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/Linux/"><i class="fa-fw fas fa-archive"></i><span> Linux</span></a></li><li><a class="site-page child" href="/categories/JavaWeb/"><i class="fa-fw fas fa-archive"></i><span> JavaWeb</span></a></li><li><a class="site-page child" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="fa-fw fas fa-archive"></i><span> 操作系统</span></a></li><li><a class="site-page child" href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/"><i class="fa-fw fas fa-archive"></i><span> 汇编语言</span></a></li><li><a class="site-page child" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0/"><i class="fa-fw fas fa-archive"></i><span> 数据结构复习</span></a></li><li><a class="site-page child" href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"><i class="fa-fw fas fa-archive"></i><span> 软件体系结构</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 行路杂谈</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E8%A1%8C%E8%B7%AF%E6%9D%82%E8%B0%88/"><i class="fa-fw fas fa-archive"></i><span> 行路杂谈</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">归档</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">全部文章 - 251</div><div class="article-sort"><div class="article-sort-item year">2024</div><div class="article-sort-item"><a class="article-sort-item-img" href="/2024/01/15/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" title="软件体系结构-简单工厂模式"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top6.png" alt="软件体系结构-简单工厂模式" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-15T05:59:46.000Z" title="发表于 2024-01-15 13:59:46">2024-01-15</time></div><a class="article-sort-item-title" href="/2024/01/15/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" title="软件体系结构-简单工厂模式">软件体系结构-简单工厂模式</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2024/01/15/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" title="软件体系结构-面向对象设计原则"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top5.jpg" alt="软件体系结构-面向对象设计原则" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-15T05:26:08.000Z" title="发表于 2024-01-15 13:26:08">2024-01-15</time></div><a class="article-sort-item-title" href="/2024/01/15/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" title="软件体系结构-面向对象设计原则">软件体系结构-面向对象设计原则</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2024/01/15/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/" title="软件体系结构-设计模式概述"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top3.jpg" alt="软件体系结构-设计模式概述" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-15T05:12:54.000Z" title="发表于 2024-01-15 13:12:54">2024-01-15</time></div><a class="article-sort-item-title" href="/2024/01/15/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/" title="软件体系结构-设计模式概述">软件体系结构-设计模式概述</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2024/01/15/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F/" title="软件体系结构-软件质量"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top3.jpg" alt="软件体系结构-软件质量" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-15T04:49:51.000Z" title="发表于 2024-01-15 12:49:51">2024-01-15</time></div><a class="article-sort-item-title" href="/2024/01/15/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F/" title="软件体系结构-软件质量">软件体系结构-软件质量</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2024/01/15/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-UML%E8%A1%8C%E4%B8%BA%E5%BB%BA%E6%A8%A1/" title="软件体系结构-UML行为建模"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top6.png" alt="软件体系结构-UML行为建模" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-15T02:43:04.000Z" title="发表于 2024-01-15 10:43:04">2024-01-15</time></div><a class="article-sort-item-title" href="/2024/01/15/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-UML%E8%A1%8C%E4%B8%BA%E5%BB%BA%E6%A8%A1/" title="软件体系结构-UML行为建模">软件体系结构-UML行为建模</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2024/01/15/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-UML%E6%A6%82%E8%BF%B0%E4%B8%8E%E7%BB%93%E6%9E%84%E5%BB%BA%E6%A8%A1/" title="软件体系结构-UML概述与结构建模"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top5.jpg" alt="软件体系结构-UML概述与结构建模" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-15T01:06:17.000Z" title="发表于 2024-01-15 09:06:17">2024-01-15</time></div><a class="article-sort-item-title" href="/2024/01/15/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-UML%E6%A6%82%E8%BF%B0%E4%B8%8E%E7%BB%93%E6%9E%84%E5%BB%BA%E6%A8%A1/" title="软件体系结构-UML概述与结构建模">软件体系结构-UML概述与结构建模</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2024/01/14/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E9%A3%8E%E6%A0%BC/" title="软件体系结构-软件体系结构风格"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top3.jpg" alt="软件体系结构-软件体系结构风格" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-14T13:19:57.000Z" title="发表于 2024-01-14 21:19:57">2024-01-14</time></div><a class="article-sort-item-title" href="/2024/01/14/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E9%A3%8E%E6%A0%BC/" title="软件体系结构-软件体系结构风格">软件体系结构-软件体系结构风格</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2024/01/14/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E6%A6%82%E8%BF%B0/" title="软件体系结构-概述"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top6.png" alt="软件体系结构-概述" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-01-14T12:40:11.000Z" title="发表于 2024-01-14 20:40:11">2024-01-14</time></div><a class="article-sort-item-title" href="/2024/01/14/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E6%A6%82%E8%BF%B0/" title="软件体系结构-概述">软件体系结构-概述</a></div></div><div class="article-sort-item year">2023</div><div class="article-sort-item"><a class="article-sort-item-img" href="/2023/11/22/KMP%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="KMP匹配字符串"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top5.jpg" alt="KMP匹配字符串" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-11-22T12:50:34.000Z" title="发表于 2023-11-22 20:50:34">2023-11-22</time></div><a class="article-sort-item-title" href="/2023/11/22/KMP%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="KMP匹配字符串">KMP匹配字符串</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2023/11/19/GunMayhem-%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E4%BC%98%E5%8C%96%E6%9E%AA%E6%A2%B0%E5%88%9B%E5%BB%BA/" title="GunMayhem-工厂模式优化枪械创建"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top2.jpg" alt="GunMayhem-工厂模式优化枪械创建" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-11-19T02:48:35.000Z" title="发表于 2023-11-19 10:48:35">2023-11-19</time></div><a class="article-sort-item-title" href="/2023/11/19/GunMayhem-%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E4%BC%98%E5%8C%96%E6%9E%AA%E6%A2%B0%E5%88%9B%E5%BB%BA/" title="GunMayhem-工厂模式优化枪械创建">GunMayhem-工厂模式优化枪械创建</a></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/26/">26</a><a class="extend next" rel="next" href="/archives/page/4/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Favatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">星辰微光</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">251</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="mailto:18475126236@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/07/13/Hexo%E5%8D%9A%E5%AE%A2Github%E5%A4%87%E4%BB%BD%E8%AE%B0%E5%BD%95/" title="Hexo博客Github备份记录"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo博客Github备份记录"/></a><div class="content"><a class="title" href="/2025/07/13/Hexo%E5%8D%9A%E5%AE%A2Github%E5%A4%87%E4%BB%BD%E8%AE%B0%E5%BD%95/" title="Hexo博客Github备份记录">Hexo博客Github备份记录</a><time datetime="2025-07-13T12:44:46.000Z" title="发表于 2025-07-13 20:44:46">2025-07-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/25/%E7%BF%BB%E8%AF%91-CEDH%E6%8B%89%E5%A1%94%E6%89%8E%E6%AF%94%E6%8C%81%E6%88%92%E4%BA%BACombo/" title="翻译-CEDH拉塔扎比持戒人Combo"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="翻译-CEDH拉塔扎比持戒人Combo"/></a><div class="content"><a class="title" href="/2025/01/25/%E7%BF%BB%E8%AF%91-CEDH%E6%8B%89%E5%A1%94%E6%89%8E%E6%AF%94%E6%8C%81%E6%88%92%E4%BA%BACombo/" title="翻译-CEDH拉塔扎比持戒人Combo">翻译-CEDH拉塔扎比持戒人Combo</a><time datetime="2025-01-25T09:29:56.000Z" title="发表于 2025-01-25 17:29:56">2025-01-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/15/%E5%A5%BD%E5%A5%87%E6%80%AA%E5%95%8A/" title="复活吧我的博客"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="复活吧我的博客"/></a><div class="content"><a class="title" href="/2024/12/15/%E5%A5%BD%E5%A5%87%E6%80%AA%E5%95%8A/" title="复活吧我的博客">复活吧我的博客</a><time datetime="2024-12-14T16:08:46.000Z" title="发表于 2024-12-15 00:08:46">2024-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/14/Unreal-PCG%E5%88%B7%E8%8D%89%E5%B7%A5%E5%85%B7%E8%AE%B0%E5%BD%95/" title="Unreal-PCG刷草工具记录"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Unreal-PCG刷草工具记录"/></a><div class="content"><a class="title" href="/2024/12/14/Unreal-PCG%E5%88%B7%E8%8D%89%E5%B7%A5%E5%85%B7%E8%AE%B0%E5%BD%95/" title="Unreal-PCG刷草工具记录">Unreal-PCG刷草工具记录</a><time datetime="2024-12-14T13:39:56.000Z" title="发表于 2024-12-14 21:39:56">2024-12-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/04/%E5%BF%AB%E9%80%9F%E5%B9%82/" title="快速幂"><img src="https://myblog-1333353221.cos.ap-guangzhou.myqcloud.com/Blog%2FBackground%2Fdefault_top6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="快速幂"/></a><div class="content"><a class="title" href="/2024/08/04/%E5%BF%AB%E9%80%9F%E5%B9%82/" title="快速幂">快速幂</a><time datetime="2024-08-04T14:24:27.000Z" title="发表于 2024-08-04 22:24:27">2024-08-04</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cpp%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><span class="card-category-list-name">Cpp学习记录</span><span class="card-category-list-count">54</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Csharp%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><span class="card-category-list-name">Csharp学习记录</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Git%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">Git学习</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/JavaWeb/"><span class="card-category-list-name">JavaWeb</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><span class="card-category-list-name">Java学习记录</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><span class="card-category-list-name">Unity学习记录</span><span class="card-category-list-count">26</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Unity%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"><span class="card-category-list-name">Unity开发记录</span><span class="card-category-list-count">26</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.38em; color: #99a4b4">算法</a> <a href="/tags/Csharp/" style="font-size: 1.3em; color: #99a1ac">Csharp</a> <a href="/tags/Java/" style="font-size: 1.26em; color: #999fa8">Java</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 1.14em; color: #999b9d">计算机网络</a> <a href="/tags/%E8%BD%AF%E4%BB%B6%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/" style="font-size: 1.42em; color: #99a6b7">软件体系结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.26em; color: #999fa8">数据结构</a> <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" style="font-size: 1.34em; color: #99a3b0">汇编语言</a> <a href="/tags/Unity/" style="font-size: 1.46em; color: #99a7bb">Unity</a> <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 1.1em; color: #999">前端开发</a> <a href="/tags/C/" style="font-size: 1.5em; color: #99a9bf">C++</a> <a href="/tags/Qt/" style="font-size: 1.14em; color: #999b9d">Qt</a> <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" style="font-size: 1.18em; color: #999ca1">编译原理</a> <a href="/tags/python%E5%BC%80%E5%8F%91/" style="font-size: 1.22em; color: #999ea4">python开发</a> <a href="/tags/%E8%82%89%E9%B8%BD%E5%8D%A1%E7%89%8C/" style="font-size: 1.22em; color: #999ea4">肉鸽卡牌</a> <a href="/tags/Git/" style="font-size: 1.3em; color: #99a1ac">Git</a> <a href="/tags/SSD7/" style="font-size: 1.1em; color: #999">SSD7</a> <a href="/tags/Linux/" style="font-size: 1.3em; color: #99a1ac">Linux</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 1.34em; color: #99a3b0">操作系统</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/" title="查看更多"><i class="fas fa-angle-right"></i></a>
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/07/">
+          <span class="card-archive-list-date">七月 2025</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/01/">
+          <span class="card-archive-list-date">一月 2025</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/12/">
+          <span class="card-archive-list-date">十二月 2024</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/08/">
+          <span class="card-archive-list-date">八月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/02/">
+          <span class="card-archive-list-date">二月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/01/">
+          <span class="card-archive-list-date">一月 2024</span>
+          <span class="card-archive-list-count">22</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/11/">
+          <span class="card-archive-list-date">十一月 2023</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/09/">
+          <span class="card-archive-list-date">九月 2023</span>
+          <span class="card-archive-list-count">5</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">251</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-13T13:01:18.840Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 星辰微光</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body></html>
